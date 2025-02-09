@@ -29,7 +29,7 @@ else{
     $hashedPass = $row['pass'];
 
     if (password_verify($pass, $hashedPass)) {
-        header("location: dashboard.html");
+        header("location: ../main/dashboard.html");
     }
     else{
         echo "Incorrect password <br>";
