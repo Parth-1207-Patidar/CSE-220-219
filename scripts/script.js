@@ -2,17 +2,26 @@ document.getElementById("addTaskButton").addEventListener("click", () => {
     const taskName = document.getElementById("taskName").value.trim();
 
     if (taskName) {
-        document.getElementById("taskList").innerHTML += `<div class="bg-gray-200 p-2 m-2 rounded-md flex justify-between items-center">
-                <p>${taskName}</p>
-                <button class="popButton w-1/5 bg-red-500 hover:bg-red-600 text-white rounded px-4 py-2">pop</button>
-            </div>`;
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "bg-gray-200 p-2 m-2 rounded-md flex justify-between items-center";
 
-        document.querySelectorAll(".popButton").forEach((button) => {
-            button.addEventListener("click", (event) => {
-                event.target.parentElement.remove();
-            });
+        const taskNameDiv = document.createElement("div");
+        taskNameDiv.className = "w-4/5 overflow-y-auto whitespace-normal break-words";
+        taskNameDiv.textContent = taskName;
+
+        taskDiv.appendChild(taskNameDiv);
+
+        const popButton = document.createElement("button");
+        popButton.className = "bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600";
+        popButton.textContent = "X";
+
+        taskDiv.appendChild(popButton);
+
+        popButton.addEventListener("click", () => {
+            taskDiv.remove();
         });
 
+        document.getElementById("taskList").appendChild(taskDiv);
         document.getElementById("taskName").value = "";
     }
-})
+});
