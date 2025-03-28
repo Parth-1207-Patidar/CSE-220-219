@@ -1,5 +1,5 @@
 <?php
-$serverName = "localhost";
+$serverName = "localhost"; 
 $userName = "root";
 $password = "";
 $dbName = "TaskTracker";
@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("DELETE FROM tasks WHERE id = ?");
     $stmt->bind_param("i", $taskId);
     $stmt->execute();
+
     echo "Task deleted successfully";
 }
 

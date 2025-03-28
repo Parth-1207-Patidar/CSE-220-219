@@ -1,5 +1,5 @@
 <?php
-$serverName = "localhost";
+$serverName = "localhost"; 
 $userName = "root";
 $password = "";
 $dbName = "TaskTracker";
@@ -10,8 +10,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, task_name FROM tasks";
-$result = $conn->query($sql);
+$query = "SELECT id, task_name, elapsed_time FROM tasks";
+$result = $conn->query($query);
 
 $tasks = [];
 while ($row = $result->fetch_assoc()) {
@@ -19,5 +19,6 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($tasks);
+
 $conn->close();
 ?>

@@ -1,5 +1,5 @@
 <?php
-$serverName = "localhost";
+$serverName = "localhost"; 
 $userName = "root";
 $password = "";
 $dbName = "TaskTracker";
@@ -12,10 +12,12 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taskName = $_POST['taskName'];
+    $elapsedTime = 0; // Initialize timer at 0
 
-    $stmt = $conn->prepare("INSERT INTO tasks (task_name) VALUES (?)");
-    $stmt->bind_param("s", $taskName);
+    $stmt = $conn->prepare("INSERT INTO tasks (task_name, elapsed_time) VALUES (?, ?)");
+    $stmt->bind_param("si", $taskName, $elapsedTime);
     $stmt->execute();
+
     echo "Task added successfully";
 }
 

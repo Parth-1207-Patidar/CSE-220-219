@@ -31,12 +31,16 @@ if (!mysqli_query($conn, $query)) {
 
 mysqli_select_db($conn, "TaskTracker");
 
-$query = "CREATE TABLE IF NOT EXISTS tasks (
+$query = "CREATE TABLE tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_name VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    elapsed_time INT DEFAULT 0,
+    is_running TINYINT(1) DEFAULT 0
 )";
-if (!mysqli_query($conn, $query)) {
+
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
     die("Table creation failed: " . mysqli_error($conn));
 }
 
